@@ -54,9 +54,12 @@ git commit -m "demo: Introducir error de linting"
 git push origin demo/linter-fail
 ```
 
-5. **Crear Pull Request** en GitHub hacia `main`
+5. **Observar:** El pipeline fallará en el paso "Run Ruff Linter" ❌
+   - Ve a: https://github.com/danielr9911/basic-python-calculator/actions
+   - Verás la ejecución de la rama `demo/linter-fail`
+   - Click en el workflow para ver los detalles del fallo
 
-6. **Observar:** El pipeline fallará en el paso "Run Ruff Linter" ❌
+6. **Opcional:** Crear Pull Request hacia `main` para mostrar cómo bloquea el merge
 
 7. **Limpiar:**
 ```powershell
@@ -114,6 +117,9 @@ git push origin demo/format-fail
 ```
 
 5. **Observar:** El pipeline fallará en "Check code formatting with Black" ❌
+   - Ve a: https://github.com/danielr9911/basic-python-calculator/actions
+   - Verás la ejecución de la rama `demo/format-fail`
+   - Click en el workflow para ver los errores de formato
 
 6. **Mostrar la solución:**
 ```powershell
@@ -174,6 +180,9 @@ git push origin demo/test-fail
 ```
 
 5. **Observar:** El pipeline fallará en "Run tests with coverage" ❌
+   - Ve a: https://github.com/danielr9911/basic-python-calculator/actions
+   - Verás las pruebas fallando con detalles específicos
+   - 15 tests fallarán porque la suma ahora resta
 
 6. **Limpiar:**
 ```powershell
@@ -286,6 +295,25 @@ Coverage failure: total of 84% is less than fail-under=80%
 ```
 
 4. **Observar:** Si la cobertura baja del 80%, el pipeline falla.
+
+---
+
+---
+
+## 🚀 Ejecución Manual del Pipeline
+
+El pipeline también permite **ejecución manual** desde GitHub:
+
+1. Ve a: https://github.com/danielr9911/basic-python-calculator/actions
+2. Click en "CI Pipeline" en la barra lateral izquierda
+3. Click en el botón "Run workflow" (arriba a la derecha)
+4. Selecciona la rama donde quieres ejecutar
+5. Click en "Run workflow" verde
+
+Esto es útil para:
+- Re-ejecutar el pipeline sin hacer un nuevo push
+- Probar el pipeline en una rama específica
+- Demostrar el pipeline sin modificar código
 
 ---
 

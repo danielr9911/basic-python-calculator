@@ -23,7 +23,10 @@ Aplicación web de calculadora básica desarrollada con Python 3 y Flask que rea
 
 ## 🔄 Pipeline CI/CD
 
-El proyecto incluye un pipeline automatizado de CI/CD con GitHub Actions que se ejecuta en cada push y pull request:
+El proyecto incluye un pipeline automatizado de CI/CD con GitHub Actions que se ejecuta:
+- ✅ En **cada push a cualquier rama** (ideal para demos y desarrollo)
+- ✅ En **pull requests** hacia `main` o `develop`
+- ✅ **Manualmente** desde GitHub Actions UI
 
 ### Flujo del Pipeline (Orden según buenas prácticas DevOps):
 

@@ -1,10 +1,15 @@
 name: CI Pipeline
 
 on:
+  # Se ejecuta en push a CUALQUIER rama (ideal para demos)
   push:
-    branches: [ main, develop ]
+  
+  # Se ejecuta en pull requests hacia main o develop
   pull_request:
     branches: [ main, develop ]
+  
+  # Permite ejecución manual desde GitHub Actions UI
+  workflow_dispatch:
 
 jobs:
   quality-and-tests:
