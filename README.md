@@ -40,6 +40,15 @@ El proyecto incluye un pipeline automatizado de CI/CD con GitHub Actions que se 
 - ✅ Integración con Codecov (opcional)
 - ✅ Badges de estado en el README
 
+### 🎓 Para Instructores/Estudiantes:
+
+¿Quieres demostrar cómo el pipeline detecta y previene errores? Lee la **[Guía de Demostración de Fallos](DEMO_GUIA_FALLOS.md)** que incluye:
+
+- 📝 Ejemplos de cómo introducir errores intencionales
+- 🔍 Cómo cada etapa del pipeline detecta problemas específicos
+- 💻 Script automatizado para generar demos: `./crear-demo-fallo.ps1`
+- 🎯 Ejercicios prácticos para estudiantes
+
 ## 📁 Estructura del Proyecto
 
 ```
@@ -55,6 +64,8 @@ S6/
 ├── .bandit                     # Configuración de seguridad
 ├── .gitignore                 # Archivos ignorados por git
 ├── README.md                   # Este archivo
+├── DEMO_GUIA_FALLOS.md        # 🎓 Guía para demostrar fallos del pipeline
+├── crear-demo-fallo.ps1       # Script para crear demos automáticamente
 ├── templates/
 │   └── index.html             # Interfaz web de la calculadora
 └── tests/
