@@ -1,7 +1,7 @@
 # 🧮 Calculadora Básica con Flask
 
 [![CI Pipeline](https://github.com/danielr9911/basic-python-calculator/actions/workflows/ci.yml/badge.svg)](https://github.com/danielr9911/basic-python-calculator/actions/workflows/ci.yml)
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/downloads/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -34,7 +34,7 @@ El proyecto incluye un pipeline automatizado de CI/CD con GitHub Actions que se 
 
 ### Características del Pipeline:
 
-- ✅ Ejecuta en múltiples versiones de Python (3.10, 3.11, 3.12)
+- ✅ Ejecuta en Python 3.12 (simplificado para propósitos educativos)
 - ✅ Caché de dependencias para builds más rápidos
 - ✅ Reportes de cobertura automáticos
 - ✅ Integración con Codecov (opcional)
@@ -276,7 +276,7 @@ curl -X POST http://localhost:5000/calcular `
 ## 🛠️ Tecnologías Utilizadas
 
 ### Producción
-- **Python 3.10+**
+- **Python 3.12**
 - **Flask 3.0.0** - Framework web
 - **Pytest 7.4.3** - Framework de pruebas
 - **pytest-cov 4.1.0** - Plugin de cobertura para Pytest
