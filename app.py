@@ -15,6 +15,7 @@ def index():
     """Renderiza la página principal de la calculadora."""
     return render_template("index.html")
 
+
 @app.route("/calcular", methods=["POST"])
 def calcular():
     """
