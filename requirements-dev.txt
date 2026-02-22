@@ -1,0 +1,17 @@
+# Herramientas de desarrollo y calidad de código
+
+# Linter - Ruff (el más rápido y moderno para Python)
+ruff==0.1.15
+
+# Formatter - Black (el estándar de facto para Python)
+black==24.1.1
+
+# Seguridad - Bandit (análisis de seguridad)
+bandit==1.7.6
+
+# Testing (ya incluidas en requirements.txt pero las listamos aquí también)
+pytest==7.4.3
+pytest-cov==4.1.0
+
+# Herramientas adicionales útiles
+isort==5.13.2  # Ordenamiento de imports (integrado en Ruff pero útil tenerlo)

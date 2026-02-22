@@ -1,0 +1,10 @@
+[bandit]
+# Archivos y directorios a excluir
+exclude_dirs = /tests,/venv,/env,/.pytest_cache
+
+# Tests a omitir
+# B101: assert_used - Los asserts son normales en pytest
+# B201: flask_debug_true - Debug=True es para desarrollo local
+# B104: hardcoded_bind_all_interfaces - 0.0.0.0 es para desarrollo local
+skips = B101,B201,B104
+
