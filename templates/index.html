@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Básica</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            transition: border-color 0.3s;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .operations {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        button {
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: white;
+        }
+
+        .btn-suma {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .btn-resta {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .btn-multiplicacion {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .btn-division {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .resultado {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            text-align: center;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .resultado h2 {
+            color: #333;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .resultado-valor {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .error {
+            color: #f5576c;
+            font-weight: 600;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .operations {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧮 Calculadora Básica</h1>
+        
+        <div class="input-group">
+            <label for="numero1">Primer Número:</label>
+            <input type="number" id="numero1" step="any" placeholder="Ingrese el primer número">
+        </div>
+
+        <div class="input-group">
+            <label for="numero2">Segundo Número:</label>
+            <input type="number" id="numero2" step="any" placeholder="Ingrese el segundo número">
+        </div>
+
+        <div class="operations">
+            <button class="btn-suma" onclick="calcular('suma')">➕ Suma</button>
+            <button class="btn-resta" onclick="calcular('resta')">➖ Resta</button>
+            <button class="btn-multiplicacion" onclick="calcular('multiplicacion')">✖️ Multiplicación</button>
+            <button class="btn-division" onclick="calcular('division')">➗ División</button>
+        </div>
+
+        <div class="resultado" id="resultado">
+            <h2>Resultado</h2>
+            <div class="resultado-valor">-</div>
+        </div>
+    </div>
+
+    <script>
+        async function calcular(operacion) {
+            const numero1 = document.getElementById('numero1').value;
+            const numero2 = document.getElementById('numero2').value;
+            const resultadoDiv = document.getElementById('resultado');
+
+            // Validación básica
+            if (numero1 === '' || numero2 === '') {
+                mostrarResultado('Por favor, ingrese ambos números', true);
+                return;
+            }
+
+            try {
+                const response = await fetch('/calcular', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        numero1: parseFloat(numero1),
+                        numero2: parseFloat(numero2),
+                        operacion: operacion
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    const operacionSimbolo = {
+                        'suma': '+',
+                        'resta': '-',
+                        'multiplicacion': '×',
+                        'division': '÷'
+                    };
+                    mostrarResultado(
+                        `${numero1} ${operacionSimbolo[operacion]} ${numero2} = ${data.resultado}`, 
+                        false
+                    );
+                } else {
+                    mostrarResultado(data.error, true);
+                }
+            } catch (error) {
+                mostrarResultado('Error al conectar con el servidor', true);
+            }
+        }
+
+        function mostrarResultado(mensaje, esError) {
+            const resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.classList.remove('fade-in');
+            
+            setTimeout(() => {
+                if (esError) {
+                    resultadoDiv.innerHTML = `
+                        <h2>Error</h2>
+                        <div class="error">${mensaje}</div>
+                    `;
+                } else {
+                    resultadoDiv.innerHTML = `
+                        <h2>Resultado</h2>
+                        <div class="resultado-valor">${mensaje}</div>
+                    `;
+                }
+                resultadoDiv.classList.add('fade-in');
+            }, 50);
+        }
+
+        // Permitir calcular con Enter
+        document.getElementById('numero1').addEventListener('keypress', handleEnter);
+        document.getElementById('numero2').addEventListener('keypress', handleEnter);
+
+        function handleEnter(e) {
+            if (e.key === 'Enter') {
+                calcular('suma');
+            }
+        }
+    </script>
+</body>
+</html>
