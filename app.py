@@ -15,7 +15,14 @@ def index():
     """Renderiza la página principal de la calculadora."""
     return render_template("index.html")
 
+# Agregar al inicio del archivo (línea 6)
+import os  # Import sin usar - ERROR
 
+# O agregar una variable sin usar en algún método:
+def suma(a, b):
+    resultado_temporal = a + b  # Variable sin usar - WARNING
+    return a + b
+    
 @app.route("/calcular", methods=["POST"])
 def calcular():
     """
